@@ -25,6 +25,7 @@ namespace Funds.Core.Models
         public decimal MarketValue => Price * Quantity;
         public decimal Tolerance => StockType == StockType.Bond ? 
             StockConstants.BondTolerance : StockConstants.EquityTolerance;
+
         public decimal TransactionCost
         {
             get
