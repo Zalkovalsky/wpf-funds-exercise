@@ -35,16 +35,13 @@
         </GridViewColumnHeader>
 
         <GridViewColumnHeader Grid.Row="0" Grid.Column="2">
-            <TextBlock 
-            Text="Total Stock Weight" />
+            <TextBlock Text="Total Stock Weight" />
         </GridViewColumnHeader>
-
 
         <GridViewColumnHeader Grid.Row="0" Grid.Column="3">
-            <TextBlock 
-            
-            Text="Total Market Value" />
+            <TextBlock Text="Total Market Value" />
         </GridViewColumnHeader>
+        
         <TextBlock 
                    Grid.Row="1" 
                    Grid.Column="0"                     

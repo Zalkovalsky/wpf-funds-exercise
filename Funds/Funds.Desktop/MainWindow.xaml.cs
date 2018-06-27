@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Funds.Core.Models;
+using Funds.Core.Viewmodels;
 
 namespace Funds.Desktop
 {
@@ -25,13 +26,7 @@ namespace Funds.Desktop
         {
             InitializeComponent();
 
-            DataContext = new
-            {
-                Stocks = new List<Stock>
-                {
-                    new Stock(StockType.Bond, 1000000, 100000)
-                }
-            };
+            DataContext = new MainViewModel();
         }
     }
 }

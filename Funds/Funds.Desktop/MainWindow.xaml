@@ -4,11 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:views="clr-namespace:Funds.Desktop.Views"
+        xmlns:viewmodels="clr-namespace:Funds.Core.Viewmodels;assembly=Funds.Core"
         mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel, IsDesignTimeCreatable=True}"
         Title="MainWindow" Height="450" Width="800">
     <DockPanel>
-        <views:FundInputView DockPanel.Dock="Top" />
-        <views:ReportView DockPanel.Dock="Right" />
-        <views:FundsView />
+        <views:FundInputView DockPanel.Dock="Top" DataContext="{Binding FundInputViewModel}"/>
+        <views:ReportView DockPanel.Dock="Right" DataContext="{Binding ReportViewModel}"/>
+        <views:FundsView DataContext="{Binding FundsViewModel}" />
     </DockPanel>
 </Window>

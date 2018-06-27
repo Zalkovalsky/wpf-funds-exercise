@@ -1,11 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Input;
+using Funds.Core.Models;
 
 namespace Funds.Core.Viewmodels
 {
     public class MainViewModel : ViewModelBase
     {
+        public MainViewModel()
+        {
+            FundInputViewModel = new FundInputViewModel();
+            FundsViewModel = new FundsViewModel();
+            ReportViewModel = new ReportViewModel();
+        }
+
+        public FundInputViewModel FundInputViewModel { get; set; }
+        public FundsViewModel FundsViewModel { get; set; }
+        public ReportViewModel ReportViewModel { get; set; }
 
     }
 
@@ -16,7 +28,61 @@ namespace Funds.Core.Viewmodels
 
     public class FundInputViewModel : ViewModelBase
     {
-        
+        private StockType _stockType = StockType.Bond;
+        public StockType StockType
+        {
+            get => _stockType;
+            set
+            {
+                if (value == _stockType)
+                    return;
+
+                _stockType = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private long _quantity;
+        public long Quantity
+        {
+            get => _quantity;
+            set
+            {
+                if (value == _quantity)
+                    return;
+
+                _quantity = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private decimal _price;
+        public decimal Price
+        {
+            get => _price;
+            set
+            {
+                if (value == _price)
+                    return;
+
+                _price = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ICommand _addFundCommand;
+        public ICommand AddFundCommand
+        {
+            get => _addFundCommand;
+            set
+            {
+                if (value == _addFundCommand)
+                    return;
+
+                _addFundCommand = value;
+                OnPropertyChanged();
+            }
+        }
     }
 
     public class FundsViewModel : ViewModelBase
