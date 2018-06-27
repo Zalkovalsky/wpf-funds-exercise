@@ -62,36 +62,36 @@
         <TextBlock 
             Grid.Row="1" 
             Grid.Column="1" 
-            Text="{Binding EquityTotalNumber, FallbackValue=100000}" />
+            Text="{Binding EquitiesTotalNumber, FallbackValue=100000}" />
 
 
         <TextBlock 
             Grid.Row="1" 
             Grid.Column="2" 
-            Text="{Binding EquityTotalStockWeight, FallbackValue=100000}" />
+            Text="{Binding EquitiesTotalStockWeight, FallbackValue=100000}" />
 
 
         <TextBlock 
             Grid.Row="1" 
             Grid.Column="3" 
-            Text="{Binding EquityTotalMarketValue, FallbackValue=100000}" />
+            Text="{Binding EquitiesTotalMarketValue, FallbackValue=100000}" />
 
         <TextBlock 
             Grid.Row="2" 
             Grid.Column="1" 
-            Text="{Binding BondTotalNumber, FallbackValue=100000}" />
+            Text="{Binding BondsTotalNumber, FallbackValue=100000}" />
 
 
         <TextBlock 
             Grid.Row="2" 
             Grid.Column="2" 
-            Text="{Binding BondTotalStockWeight, FallbackValue=100000}" />
+            Text="{Binding BondsTotalStockWeight, FallbackValue=100000}" />
 
 
         <TextBlock 
             Grid.Row="2" 
             Grid.Column="3" 
-            Text="{Binding BondTotalMarketValue, FallbackValue=100000}" />
+            Text="{Binding BondsTotalMarketValue, FallbackValue=100000}" />
 
         <TextBlock 
             Grid.Row="3" 

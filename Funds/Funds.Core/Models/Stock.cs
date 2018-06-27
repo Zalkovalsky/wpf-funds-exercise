@@ -37,6 +37,7 @@ namespace Funds.Core.Models
                 return MarketValue * multiplier;
             }
         }
+
         public bool IsRed
         {
             get

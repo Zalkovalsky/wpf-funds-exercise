@@ -32,7 +32,7 @@ namespace Funds.Core.Models
 
         public decimal CalculateStockWeight(Stock stock)
         {
-            return stock.MarketValue / FundTotalMarketValue;
+            return FundTotalMarketValue != 0m ? stock.MarketValue / FundTotalMarketValue : 0m;
         }
     }
 }

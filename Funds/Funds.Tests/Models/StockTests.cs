@@ -32,39 +32,59 @@ namespace Funds.Tests.Models
             Assert.Equal(100, stock.MarketValue);
         }
 
-        [Fact]
-        public void Stock_Equity_TransactionCost_IsCalculatedWithCorrectRate()
+        [Theory]
+        [MemberData(nameof(IsRedForMarketValueTestData))]
+        public void Stock_IsRed_ForNegativeMarketValue(decimal price, long qty, bool expectedResult)
         {
             // Arrange
-            var stock = new Stock(StockType.Equity, 10, 10);
+            var stock = new Stock(StockType.Bond, price, qty);
             // Act 
             // Assert
-            Assert.Equal((decimal)(0.005*100), stock.TransactionCost);
+            Assert.Equal(expectedResult, stock.IsRed);
         }
 
+        public static TheoryData<decimal, long, bool> IsRedForMarketValueTestData =>
+            new TheoryData<decimal, long, bool>
+            {
+                {1m, 1, false},
+                {-1m, 1, true},
+                {0m, 1, false}
+            };
 
-        [Fact]
-        public void Stock_Bond_TransactionCost_IsCalculatedWithCorrectRate()
+
+        [Theory]
+        [MemberData(nameof(TransactionCostTestData))]
+        public void Stock_Equity_TransactionCost_IsCalculatedWithCorrectRate(decimal price, long qty)
         {
             // Arrange
-            var stock = new Stock(StockType.Bond, 10, 10);
+            var stock = new Stock(StockType.Equity, price, qty);
             // Act 
             // Assert
-            Assert.Equal((decimal)(100*0.02), stock.TransactionCost);
-        }
-
-        [Fact]
-        public void Stock_IsRed_ForNegativeMarketValue()
-        {
-            // Arrange
-            var stock = new Stock(StockType.Bond, -1, 10);
-            // Act 
-            // Assert
-            Assert.True(stock.IsRed);
+            Assert.Equal(StockConstants.EquityTransactionCostMultiplier*stock.MarketValue, stock.TransactionCost);
         }
 
         [Theory]
-        [MemberData(nameof(Data))]
+        [MemberData(nameof(TransactionCostTestData))]
+        public void Stock_Bond_TransactionCost_IsCalculatedWithCorrectRate(decimal price, long qty)
+        {
+            // Arrange
+            var stock = new Stock(StockType.Bond, price, qty);
+            // Act 
+            // Assert
+            Assert.Equal(StockConstants.BondTransactionCostMultiplier*stock.MarketValue, stock.TransactionCost);
+        }
+
+        public static TheoryData<decimal, long> TransactionCostTestData =>
+            new TheoryData<decimal, long>
+            {
+                {10m, 10},
+                {1m, 1},
+                {-1m, 1},
+                {0m, 1}
+            };
+
+        [Theory]
+        [MemberData(nameof(IsRedForExceedingTransactionCostTestData))]
         public void Stock_IsRed_ForTransactionCostOverTolerance(StockType stockType, decimal price, long quantity)
         {
             // Arrange
@@ -74,7 +94,7 @@ namespace Funds.Tests.Models
             Assert.True(stock.IsRed);
         }
 
-        public static TheoryData<StockType, decimal, long> Data =>
+        public static TheoryData<StockType, decimal, long> IsRedForExceedingTransactionCostTestData =>
             new TheoryData<StockType,decimal, long>
             {
                 {StockType.Bond, 2000, 100000},

@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Funds.Desktop.Views
 {
     /// <summary>
-    /// Interaction logic for FundInputView.xaml
+    /// Interaction logic for StockInputView.xaml
     /// </summary>
-    public partial class FundInputView : UserControl
+    public partial class StockInputView : UserControl
     {
-        public FundInputView()
+        public StockInputView()
         {
             InitializeComponent();
         }
