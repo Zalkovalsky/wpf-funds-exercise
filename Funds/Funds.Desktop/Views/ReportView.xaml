@@ -7,6 +7,111 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
+        <Grid.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="TextAlignment" Value="Center" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+            </Style>
+
+        </Grid.Resources>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <GridViewColumnHeader Grid.Row="0" Grid.Column="0"/>
+
+        <GridViewColumnHeader Grid.Row="0" Grid.Column="1">
+            <TextBlock Text="Total Number" />
+        </GridViewColumnHeader>
+
+        <GridViewColumnHeader Grid.Row="0" Grid.Column="2">
+            <TextBlock 
+            Text="Total Stock Weight" />
+        </GridViewColumnHeader>
+
+
+        <GridViewColumnHeader Grid.Row="0" Grid.Column="3">
+            <TextBlock 
             
+            Text="Total Market Value" />
+        </GridViewColumnHeader>
+        <TextBlock 
+                   Grid.Row="1" 
+                   Grid.Column="0"                     
+                   Text="Equity" />
+
+        <TextBlock 
+            Grid.Row="2" 
+            Grid.Column="0" 
+            Text="Bond" />
+
+        <TextBlock 
+            Grid.Row="3" 
+            Grid.Column="0" 
+            Text="Total" />
+
+        <!-- Bindings -->
+
+        <TextBlock 
+            Grid.Row="1" 
+            Grid.Column="1" 
+            Text="{Binding EquityTotalNumber, FallbackValue=100000}" />
+
+
+        <TextBlock 
+            Grid.Row="1" 
+            Grid.Column="2" 
+            Text="{Binding EquityTotalStockWeight, FallbackValue=100000}" />
+
+
+        <TextBlock 
+            Grid.Row="1" 
+            Grid.Column="3" 
+            Text="{Binding EquityTotalMarketValue, FallbackValue=100000}" />
+
+        <TextBlock 
+            Grid.Row="2" 
+            Grid.Column="1" 
+            Text="{Binding BondTotalNumber, FallbackValue=100000}" />
+
+
+        <TextBlock 
+            Grid.Row="2" 
+            Grid.Column="2" 
+            Text="{Binding BondTotalStockWeight, FallbackValue=100000}" />
+
+
+        <TextBlock 
+            Grid.Row="2" 
+            Grid.Column="3" 
+            Text="{Binding BondTotalMarketValue, FallbackValue=100000}" />
+
+        <TextBlock 
+            Grid.Row="3" 
+            Grid.Column="1" 
+            Text="{Binding FundTotalNumber, FallbackValue=100000}" />
+
+
+        <TextBlock 
+            Grid.Row="3" 
+            Grid.Column="2" 
+            Text="{Binding FundTotalStockWeight, FallbackValue=100000}" />
+
+
+        <TextBlock 
+            Grid.Row="3" 
+            Grid.Column="3" 
+            Text="{Binding FundTotalMarketValue, FallbackValue=100000}" />
+
     </Grid>
 </UserControl>

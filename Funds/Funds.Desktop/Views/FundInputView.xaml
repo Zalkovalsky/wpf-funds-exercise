@@ -7,6 +7,29 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        
+        
+        <Label Content="Fund Type"/>
+        <ComboBox Grid.Row="1" Grid.Column="0">
+            <ComboBoxItem>Equity</ComboBoxItem>
+            <ComboBoxItem>Bond</ComboBoxItem>
+        </ComboBox>
+
+        <Label Content="Price ($)" Grid.Row="0" Grid.Column="1"/>
+        <TextBox Text="{Binding Price, Mode=TwoWay}" Grid.Row="1" Grid.Column="1"/>
+        <Label Content="Quantity" Grid.Row="0" Grid.Column="2"/>
+        <TextBox Text="{Binding Quantity, Mode=TwoWay}" Grid.Row="1" Grid.Column="2"/>
+        <Button Command="{Binding AddFundCommand}" Content="Add Fund" Grid.Row="1" Grid.Column="3" />
+        
     </Grid>
 </UserControl>
