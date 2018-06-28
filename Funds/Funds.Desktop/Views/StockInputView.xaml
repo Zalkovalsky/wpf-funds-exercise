@@ -10,6 +10,9 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.Resources>
+            <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignTextBox}">
+                <Setter Property="Margin" Value="5,0,5,0" />
+            </Style>
             <ObjectDataProvider x:Key="StockTypeValues"
                                 MethodName="GetValues" ObjectType="{x:Type system:Enum}">
                 <ObjectDataProvider.MethodParameters>
@@ -31,14 +34,32 @@
         <Label Content="Fund Type"/>
         <ComboBox Grid.Row="1" 
                   Grid.Column="0" 
+                  Margin="0, 6, 0, 0"
                   ItemsSource="{Binding Source={StaticResource StockTypeValues}}"
                   SelectedItem="{Binding StockType, Mode=TwoWay}" />
 
-        <Label Content="Price ($)" Grid.Row="0" Grid.Column="1"/>
-        <TextBox Text="{Binding Price, Mode=TwoWay}" Grid.Row="1" Grid.Column="1"/>
-        <Label Content="Quantity" Grid.Row="0" Grid.Column="2"/>
-        <TextBox Text="{Binding Quantity, Mode=TwoWay}" Grid.Row="1" Grid.Column="2"/>
-        <Button Command="{Binding AddFundCommand}" Content="Add Fund" Grid.Row="1" Grid.Column="3" />
+        <Label Content="Price ($)" 
+               Grid.Row="0" 
+               Grid.Column="1"/>
         
+        <TextBox Text="{Binding Price, Mode=TwoWay}" 
+                
+                 Grid.Row="1" 
+                 Grid.Column="1"/>
+        
+        <Label Content="Quantity" 
+               Grid.Row="0" 
+               Grid.Column="2"/>
+        
+        <TextBox Text="{Binding Quantity, Mode=TwoWay, ValidatesOnDataErrors=True}" 
+                 Grid.Row="1" 
+                 Grid.Column="2"/>
+        
+        <Button 
+            Style="{DynamicResource MaterialDesignRaisedButton}"
+            Command="{Binding AddFundCommand}" 
+            Grid.Row="1" 
+            Grid.Column="3" 
+            Content="Add"/>
     </Grid>
 </UserControl>

@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using Funds.Core.Utilities;
 
 namespace Funds.Core.Models
 {
-    public class Stock
+    public class Stock: ObservableObject
     {
         public Stock(StockType stockType, decimal price, long quantity, string stockName)
         {
@@ -57,7 +56,20 @@ namespace Funds.Core.Models
             }
         }
 
-        public decimal StockWeight { get; set; }
+        private decimal _stockWeight;
+
+        public decimal StockWeight
+        {
+            get => _stockWeight;
+            set
+            {
+                if (value == _stockWeight)
+                    return;
+
+                _stockWeight = value;
+                OnPropertyChanged();
+            }
+        }
 
     }
 }

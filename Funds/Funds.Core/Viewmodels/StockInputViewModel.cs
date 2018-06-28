@@ -1,16 +1,18 @@
-﻿using System.Windows.Input;
+﻿using System.ComponentModel;
+using System.Windows.Input;
 using Funds.Core.Models;
 using Funds.Core.Utilities;
 
 namespace Funds.Core.Viewmodels
 {
-    public class StockInputViewModel : ObservableObject
+    public class StockInputViewModel : ObservableObject, IDataErrorInfo
     {
         private readonly Fund _fund;
 
         public StockInputViewModel(Fund fund)
         {
             _fund = fund;
+            ClearToDefaults();
         }
 
         private StockType _stockType = StockType.Bond;
@@ -42,6 +44,7 @@ namespace Funds.Core.Viewmodels
         }
 
         private decimal _price;
+        
         public decimal Price
         {
             get => _price;
@@ -70,13 +73,29 @@ namespace Funds.Core.Viewmodels
         {
             _fund.Stocks.Add(new Stock(StockType, Price, Quantity, _fund.GenerateNextStockName(StockType)));
 
-            Clear();
+            ClearToDefaults();
         }
 
-        private void Clear()
+        private void ClearToDefaults()
         {
+            StockType = StockType.Bond;
             Price = 0;
-            Quantity = 0;
+            Quantity = 1;
+        }
+
+        public string Error { get; }
+
+        public string this[string columnName]
+        {
+            get
+            {
+                if (columnName == nameof(Quantity) && Quantity <= 0)
+                {
+                    return "Quantity has to be a positive number";
+                }
+
+                return null;
+            }
         }
     }
 }

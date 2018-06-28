@@ -7,7 +7,12 @@
         xmlns:viewmodels="clr-namespace:Funds.Core.Viewmodels;assembly=Funds.Core"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel, IsDesignTimeCreatable=True}"
-        Title="MainWindow" Height="450" Width="860">
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="14"
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+        Title="Fund Manager" Height="450" Width="1200">
     <DockPanel>
         <views:StockInputView DockPanel.Dock="Top" DataContext="{Binding StockInputViewModel}"/>
         <views:ReportView DockPanel.Dock="Right" DataContext="{Binding ReportViewModel}"/>
