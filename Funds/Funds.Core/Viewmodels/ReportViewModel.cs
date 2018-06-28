@@ -26,17 +26,13 @@ namespace Funds.Core.Viewmodels
             }
         }
 
-        private decimal _equitiesTotalStockWeight;
         public decimal EquitiesTotalStockWeight
         {
-            get => _equitiesTotalStockWeight;
-            set
+            get
             {
-                if (value == _equitiesTotalStockWeight)
-                    return;
-
-                _equitiesTotalStockWeight = value;
-                OnPropertyChanged();
+                return FundTotalMarketValue != 0m
+                    ? _fundModel.Stocks.Where(x => x.StockType == StockType.Equity).Sum(x => x.MarketValue) /
+                      FundTotalMarketValue : 0m;
             }
         }
 
@@ -59,17 +55,13 @@ namespace Funds.Core.Viewmodels
             }
         }
 
-        private decimal _bondsTotalStockWeight;
         public decimal BondsTotalStockWeight
         {
-            get => _bondsTotalStockWeight;
-            set
+            get
             {
-                if (value == _bondsTotalStockWeight)
-                    return;
-
-                _bondsTotalStockWeight = value;
-                OnPropertyChanged();
+                return FundTotalMarketValue != 0m
+                    ? _fundModel.Stocks.Where(x => x.StockType == StockType.Bond).Sum(x => x.MarketValue) /
+                      FundTotalMarketValue : 0m;
             }
         }
 
@@ -85,7 +77,7 @@ namespace Funds.Core.Viewmodels
         }
 
         public int FundTotalNumber => _fundModel.Stocks.Count;
-        public decimal FundTotalStockWeight => 1m;
+        public decimal FundTotalStockWeight => _fundModel.Stocks.Any() ? 1m : 0m;
 
         public decimal FundTotalMarketValue => _fundModel.Stocks.Sum(x => x.MarketValue);
 

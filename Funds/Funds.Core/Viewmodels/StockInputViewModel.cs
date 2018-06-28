@@ -68,7 +68,7 @@ namespace Funds.Core.Viewmodels
 
         private void AddFund()
         {
-            _fund.AddStock(new Stock(StockType, Price, Quantity));
+            _fund.Stocks.Add(new Stock(StockType, Price, Quantity, "ab"));
 
             Clear();
         }

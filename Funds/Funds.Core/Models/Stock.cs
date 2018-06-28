@@ -6,13 +6,19 @@ namespace Funds.Core.Models
 {
     public class Stock
     {
-        public Stock(StockType stockType, decimal price, long quantity)
+        public Stock(StockType stockType, decimal price, long quantity, string stockName)
         {
             if (quantity <= 0)
             {
                 throw new ArgumentOutOfRangeException(nameof(quantity), "Quantity has to be a non-negative number");
             }
 
+            if (string.IsNullOrWhiteSpace(stockName))
+            {
+                throw new ArgumentOutOfRangeException(nameof(stockName), "Stock Name has to be defined");
+            }
+
+            StockName = stockName;
             Price = price;
             Quantity = quantity;
             StockType = stockType;
@@ -21,6 +27,8 @@ namespace Funds.Core.Models
         public decimal Price { get; }
         public long Quantity { get; }
         public StockType StockType { get; }
+
+        public string StockName { get; }
 
         public decimal MarketValue => Price * Quantity;
         public decimal Tolerance => StockType == StockType.Bond ? 
@@ -48,5 +56,8 @@ namespace Funds.Core.Models
                 return TransactionCost > Tolerance;
             }
         }
+
+        public decimal StockWeight { get; set; }
+
     }
 }

@@ -18,15 +18,34 @@ namespace Funds.Tests.Models
             // Assert
             Assert.Throws<ArgumentOutOfRangeException>(() =>
             {
-                var _ = new Stock(StockType.Bond, 10, -1);
+                var _ = new Stock(StockType.Bond, 10, -1, "ab");
             });
+        }
+
+        [Fact]
+        public void Stock_StockName_HasToBeDefined()
+        {
+            // Arrange
+            // Act 
+            // Assert
+
+            Assert.Throws<ArgumentOutOfRangeException>(() =>
+            {
+                var _ = new Stock(StockType.Bond, 10m, 1, string.Empty);
+            });
+
+            Assert.Throws<ArgumentOutOfRangeException>(() =>
+            {
+                var _ = new Stock(StockType.Bond, 10m, 1, null);
+            });
+
         }
 
         [Fact]
         public void Stock_MarketValue_IsCalculatedFromPriceAndQuantity()
         {
             // Arrange
-            var stock = new Stock(StockType.Bond, 10, 10);
+            var stock = new Stock(StockType.Bond, 10, 10, "ab");
             // Act 
             // Assert
             Assert.Equal(100, stock.MarketValue);
@@ -37,7 +56,7 @@ namespace Funds.Tests.Models
         public void Stock_IsRed_ForNegativeMarketValue(decimal price, long qty, bool expectedResult)
         {
             // Arrange
-            var stock = new Stock(StockType.Bond, price, qty);
+            var stock = new Stock(StockType.Bond, price, qty, "ab");
             // Act 
             // Assert
             Assert.Equal(expectedResult, stock.IsRed);
@@ -57,7 +76,7 @@ namespace Funds.Tests.Models
         public void Stock_Equity_TransactionCost_IsCalculatedWithCorrectRate(decimal price, long qty)
         {
             // Arrange
-            var stock = new Stock(StockType.Equity, price, qty);
+            var stock = new Stock(StockType.Equity, price, qty, "ab");
             // Act 
             // Assert
             Assert.Equal(StockConstants.EquityTransactionCostMultiplier*stock.MarketValue, stock.TransactionCost);
@@ -68,7 +87,7 @@ namespace Funds.Tests.Models
         public void Stock_Bond_TransactionCost_IsCalculatedWithCorrectRate(decimal price, long qty)
         {
             // Arrange
-            var stock = new Stock(StockType.Bond, price, qty);
+            var stock = new Stock(StockType.Bond, price, qty, "ab");
             // Act 
             // Assert
             Assert.Equal(StockConstants.BondTransactionCostMultiplier*stock.MarketValue, stock.TransactionCost);
@@ -88,7 +107,7 @@ namespace Funds.Tests.Models
         public void Stock_IsRed_ForTransactionCostOverTolerance(StockType stockType, decimal price, long quantity)
         {
             // Arrange
-            var stock = new Stock(stockType, price, quantity);
+            var stock = new Stock(stockType, price, quantity, "ab");
             // Act 
             // Assert
             Assert.True(stock.IsRed);

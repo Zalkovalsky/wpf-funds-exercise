@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
-    <DataGrid ItemsSource="{Binding Stocks}">
+    <DataGrid ItemsSource="{Binding Fund.Stocks}">
         <DataGrid.Resources>
             <Style TargetType="DataGridRow">
                 <Style.Triggers>

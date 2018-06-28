@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 
 namespace Funds.Core.Models
 {
@@ -10,24 +7,34 @@ namespace Funds.Core.Models
     {
         public ObservableCollection<Stock> Stocks { get; } = new ObservableCollection<Stock>();
 
+        public Fund()
+        {
+            Stocks.CollectionChanged += (sender, args) =>
+            {
+                foreach (var stock in Stocks)
+                {
+                    stock.StockWeight = CalculateStockWeight(stock);
+                }
+            };
+        }
+
         public decimal FundTotalMarketValue
         {
             get { return Stocks.Sum(x => x.MarketValue); }
         }
 
-        public long FundTotalNumber => Stocks.Count;
-        public double FundTotalStockWeight => 1;
-
-        public void AddStock(Stock stock)
+        public void AddStock(StockType stockType, decimal price, long quantity)
         {
+            var stock = new Stock(stockType, price, quantity, GenerateNextStockName(stockType));
+
             Stocks.Add(stock);
         }
 
-        public string GenerateStockName(StockType stockType)
+        public string GenerateNextStockName(StockType withType)
         {
-            var nextId = Stocks.Count(x => x.StockType == stockType) + 1;
+            var nextId = Stocks.Count(x => x.StockType == withType) + 1;
 
-            return $"{(stockType == StockType.Bond ? "Bond" : "Equity")}{nextId}";
+            return $"{(withType == StockType.Bond ? "Bond" : "Equity")}{nextId}";
         }
 
         public decimal CalculateStockWeight(Stock stock)

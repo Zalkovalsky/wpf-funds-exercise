@@ -5,13 +5,11 @@ namespace Funds.Core.Viewmodels
 {
     public class FundViewModel : ObservableObject
     {
-        private readonly Fund _model;
-
         public FundViewModel(Fund model)
         {
-            _model = model;
+            Fund = model;
         }
 
-
+        public Fund Fund { get; }
     }
 }
