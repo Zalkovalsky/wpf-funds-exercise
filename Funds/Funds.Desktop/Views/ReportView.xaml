@@ -8,6 +8,11 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.Resources>
+            <Style TargetType="TextBlock" x:Key="RowHeaderTextBlockStyle">
+                <Setter Property="Margin" Value="20, 0, 20, 0" />
+                
+            </Style>
+            
             <Style TargetType="TextBlock">
                 <Setter Property="TextAlignment" Value="Center" />
                 <Setter Property="VerticalAlignment" Value="Center" />
@@ -44,17 +49,20 @@
         
         <TextBlock 
                    Grid.Row="1" 
-                   Grid.Column="0"                     
+                   Grid.Column="0" 
+                   Style="{StaticResource RowHeaderTextBlockStyle}"
                    Text="Equity" />
 
         <TextBlock 
             Grid.Row="2" 
             Grid.Column="0" 
+            Style="{StaticResource RowHeaderTextBlockStyle}"
             Text="Bond" />
 
         <TextBlock 
             Grid.Row="3" 
             Grid.Column="0" 
+            Style="{StaticResource RowHeaderTextBlockStyle}"
             Text="Total" />
 
         <!-- Bindings -->
@@ -68,13 +76,13 @@
         <TextBlock 
             Grid.Row="1" 
             Grid.Column="2" 
-            Text="{Binding EquitiesTotalStockWeight, FallbackValue=100000}" />
+            Text="{Binding EquitiesTotalStockWeight, StringFormat={}{0:P2}}" VerticalAlignment="Bottom" />
 
 
         <TextBlock 
             Grid.Row="1" 
             Grid.Column="3" 
-            Text="{Binding EquitiesTotalMarketValue, FallbackValue=100000}" />
+            Text="{Binding EquitiesTotalMarketValue, StringFormat={}{0:C}}" />
 
         <TextBlock 
             Grid.Row="2" 
@@ -85,13 +93,13 @@
         <TextBlock 
             Grid.Row="2" 
             Grid.Column="2" 
-            Text="{Binding BondsTotalStockWeight, FallbackValue=100000}" />
+            Text="{Binding BondsTotalStockWeight, StringFormat={}{0:P2}}" />
 
 
         <TextBlock 
             Grid.Row="2" 
             Grid.Column="3" 
-            Text="{Binding BondsTotalMarketValue, FallbackValue=100000}" />
+            Text="{Binding BondsTotalMarketValue, StringFormat={}{0:C}}" />
 
         <TextBlock 
             Grid.Row="3" 
@@ -102,13 +110,13 @@
         <TextBlock 
             Grid.Row="3" 
             Grid.Column="2" 
-            Text="{Binding FundTotalStockWeight, FallbackValue=100000}" />
+            Text="{Binding FundTotalStockWeight, StringFormat={}{0:P2}}" />
 
 
         <TextBlock 
             Grid.Row="3" 
             Grid.Column="3" 
-            Text="{Binding FundTotalMarketValue, FallbackValue=100000}" />
+            Text="{Binding FundTotalMarketValue, StringFormat={}{0:C}}" />
 
     </Grid>
 </UserControl>

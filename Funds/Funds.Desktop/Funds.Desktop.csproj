@@ -54,6 +54,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ValueConverters\DecimalToPercentageStringValueConverter.cs" />
     <Compile Include="Views\StockInputView.xaml.cs">
       <DependentUpon>StockInputView.xaml</DependentUpon>
     </Compile>

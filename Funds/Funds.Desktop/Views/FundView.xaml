@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
-    <DataGrid ItemsSource="{Binding Fund.Stocks}">
+    <DataGrid ItemsSource="{Binding Fund.Stocks}" AutoGenerateColumns="False">
         <DataGrid.Resources>
             <Style TargetType="DataGridRow">
                 <Style.Triggers>
@@ -20,5 +20,15 @@
                 </Style.Triggers>
             </Style>
         </DataGrid.Resources>
+        <DataGrid.Columns>
+            <DataGridTextColumn Binding="{Binding StockType}" Header="Stock Type"/>
+            <DataGridTextColumn Binding="{Binding StockName}" Header="Stock Name"/>
+            <DataGridTextColumn Binding="{Binding Price, StringFormat={}{0:C}}" Header="Price"/>
+            <DataGridTextColumn Binding="{Binding Quantity}" Header="Quantity"/>
+            <DataGridTextColumn Binding="{Binding MarketValue, StringFormat={}{0:C}}" Header="Market Value"/>
+            <DataGridTextColumn Binding="{Binding TransactionCost, StringFormat={}{0:C}}" Header="Transaction Cost"/>
+            <DataGridTextColumn Binding="{Binding StockWeight, StringFormat={}{0:P2}}" Header="Stock Weight"/>
+        </DataGrid.Columns>
+        
     </DataGrid>
 </UserControl>
