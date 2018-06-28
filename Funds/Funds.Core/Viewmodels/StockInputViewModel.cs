@@ -1,5 +1,7 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Windows.Input;
+using Funds.Core.Annotations;
 using Funds.Core.Models;
 using Funds.Core.Utilities;
 
@@ -9,9 +11,9 @@ namespace Funds.Core.Viewmodels
     {
         private readonly Fund _fund;
 
-        public StockInputViewModel(Fund fund)
+        public StockInputViewModel([NotNull] Fund fund)
         {
-            _fund = fund;
+            _fund = fund ?? throw new ArgumentNullException(nameof(fund));
             ClearToDefaults();
         }
 
@@ -83,7 +85,7 @@ namespace Funds.Core.Viewmodels
             Quantity = 1;
         }
 
-        public string Error { get; }
+        public string Error { get; } = string.Empty;
 
         public string this[string columnName]
         {

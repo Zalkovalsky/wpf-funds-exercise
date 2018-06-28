@@ -68,9 +68,7 @@
   <ItemGroup>
     <Analyzer Include="..\packages\xunit.analyzers.0.7.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Funds.Core\Funds.Core.csproj">
       <Project>{b505d6ef-e715-4a4c-bdbd-0a288fd77e09}</Project>

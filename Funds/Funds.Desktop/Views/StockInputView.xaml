@@ -34,7 +34,7 @@
         <Label Content="Fund Type"/>
         <ComboBox Grid.Row="1" 
                   Grid.Column="0" 
-                  Margin="0, 6, 0, 0"
+                  Margin="5, 6, 0, 0"
                   ItemsSource="{Binding Source={StaticResource StockTypeValues}}"
                   SelectedItem="{Binding StockType, Mode=TwoWay}" />
 
@@ -60,6 +60,7 @@
             Command="{Binding AddFundCommand}" 
             Grid.Row="1" 
             Grid.Column="3" 
+            Margin="5,0,5,0"
             Content="Add"/>
     </Grid>
 </UserControl>

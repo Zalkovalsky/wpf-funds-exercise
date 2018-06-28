@@ -18,10 +18,6 @@ namespace Funds.Core.Models
             };
         }
 
-        public decimal FundTotalMarketValue
-        {
-            get { return Stocks.Sum(x => x.MarketValue); }
-        }
 
         public void AddStock(StockType stockType, decimal price, long quantity)
         {
@@ -39,7 +35,9 @@ namespace Funds.Core.Models
 
         public decimal CalculateStockWeight(Stock stock)
         {
-            return FundTotalMarketValue != 0m ? stock.MarketValue / FundTotalMarketValue : 0m;
+            var fundTotalMarketValue = Stocks.Sum(x => x.MarketValue);
+            
+            return fundTotalMarketValue != 0m ? stock.MarketValue / fundTotalMarketValue : 0m;
         }
     }
 }

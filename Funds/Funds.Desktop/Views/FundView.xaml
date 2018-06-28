@@ -3,11 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Funds.Desktop.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
-    <DataGrid ItemsSource="{Binding Fund.Stocks}" AutoGenerateColumns="False">
+    <DataGrid ItemsSource="{Binding Fund.Stocks}" 
+              AutoGenerateColumns="False"
+              CanUserDeleteRows="False">
         <DataGrid.Resources>
             <Style TargetType="DataGridRow">
                 <Style.Triggers>
@@ -21,13 +22,13 @@
             </Style>
         </DataGrid.Resources>
         <DataGrid.Columns>
-            <DataGridTextColumn Binding="{Binding StockType}" Header="Stock Type"/>
-            <DataGridTextColumn Binding="{Binding StockName}" Header="Stock Name"/>
-            <DataGridTextColumn Binding="{Binding Price, StringFormat={}{0:C}}" Header="Price"/>
-            <DataGridTextColumn Binding="{Binding Quantity}" Header="Quantity"/>
-            <DataGridTextColumn Binding="{Binding MarketValue, StringFormat={}{0:C}}" Header="Market Value"/>
-            <DataGridTextColumn Binding="{Binding TransactionCost, StringFormat={}{0:C}}" Header="Transaction Cost"/>
-            <DataGridTextColumn Binding="{Binding StockWeight, StringFormat={}{0:P2}}" Header="Stock Weight"/>
+            <DataGridTextColumn Binding="{Binding StockType}" Header="Stock Type" IsReadOnly="True"/>
+            <DataGridTextColumn Binding="{Binding StockName}" Header="Stock Name" IsReadOnly="True"/>
+            <DataGridTextColumn Binding="{Binding Price, StringFormat={}{0:C}}" Header="Price" IsReadOnly="True"/>
+            <DataGridTextColumn Binding="{Binding Quantity}" Header="Quantity" IsReadOnly="True"/>
+            <DataGridTextColumn Binding="{Binding MarketValue, StringFormat={}{0:C}}" Header="Market Value" IsReadOnly="True"/>
+            <DataGridTextColumn Binding="{Binding TransactionCost, StringFormat={}{0:C}}" Header="Transaction Cost" IsReadOnly="True"/>
+            <DataGridTextColumn Binding="{Binding StockWeight, StringFormat={}{0:P2}}" Header="Stock Weight" IsReadOnly="True"/>
         </DataGrid.Columns>
         
     </DataGrid>

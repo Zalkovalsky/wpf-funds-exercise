@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using Funds.Core.Annotations;
 using Funds.Core.Models;
 using Funds.Core.Utilities;
 
@@ -8,9 +10,9 @@ namespace Funds.Core.Viewmodels
     {
         private readonly Fund _fundModel;
 
-        public ReportViewModel(Fund fundModel)
+        public ReportViewModel([NotNull] Fund fundModel)
         {
-            _fundModel = fundModel;
+            _fundModel = fundModel ?? throw new ArgumentNullException(nameof(fundModel));
             
             _fundModel.Stocks.CollectionChanged += (sender, args) =>
             {
